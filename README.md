@@ -2,7 +2,8 @@
 A PHP library for the Highcharts JavaScript charting library
 
 ##What does it do?
-The library extends the functionality by adding such useful tools as
+Along with providing a nice OOP interface to create your charts, it also
+extends the functionality by adding such useful tools as
 
 ###Adding a colour to be used by a certain key of data
 This will ensure that the same colour is used consistently for data with the same key
