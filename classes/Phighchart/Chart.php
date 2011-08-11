@@ -1,6 +1,7 @@
 <?php
 
 namespace Phighchart;
+
 use Phighchart\Options\Custom as Options;
 use Phighchart\Data;
 use Phighchart\Renderer\Base as Renderer;
