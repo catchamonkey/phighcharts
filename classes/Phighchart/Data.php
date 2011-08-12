@@ -14,4 +14,26 @@ class Data
     {
         $this->_data = array();
     }
+
+    /**
+     * addCount
+     *
+     * Adds a data count for the supplied key
+     * @return NULL
+     **/
+    public function addCount($key, $count)
+    {
+        $this->_data[$key] = $count;
+    }
+
+    /**
+     * addSeries
+     *
+     * Adds a data series for the supplied key
+     * @return NULL
+     **/
+    public function addSeries($key, Array $series)
+    {
+        $this->_data[$key] = $series;
+    }
 }

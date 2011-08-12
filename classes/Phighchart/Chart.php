@@ -19,7 +19,7 @@ class Chart
     public function __construct()
     {
         $this->_options     = FALSE;
-        $this->_renderer    = 'Phighchart\Renderer\Base';
+        $this->_renderer    = FALSE;
         $this->_data        = FALSE;
     }
 
@@ -43,27 +43,27 @@ class Chart
 
     /**
      * The Renderer to use when rendering this chart
-     * @param Phighchart\Renderer\Base $renderer Renderer class that implements
-     * the Phighchart\Renderer\Interface
+     * @param $renderer Renderer class that implements the Phighchart\Renderer\Interface
      */
-    public function setRenderer(Renderer $renderer)
+    public function setRenderer($renderer)
     {
         if (!class_exists($renderer))
         {
-            throw new InvalidArgumentException("Renderer class does not exist", 1);
+            throw new \InvalidArgumentException("Renderer class does not exist", 1);
         }
-        $this->_renderer = $renderer;
+        $this->_renderer = new $renderer();
     }
 
     /**
      * Outputs the current chart instance
+     * @return The response of render() of $this->_renderer 
      */
     public function render()
     {
         // before we render we must have options and data
-        if (!this->_options || !$this->_data)
+        if (!$this->_options || !$this->_data || !$this->_renderer)
         {
-            throw new Exception("Before rendering you must provide data and options", 1);
+            throw new Exception("Before rendering you must provide data, options and a renderer", 1);
         }
         return $this->_renderer->render($this);
     }

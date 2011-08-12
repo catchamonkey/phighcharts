@@ -6,7 +6,7 @@ namespace Phighchart\Renderer;
  * Renderer Interface
  * @author Chris Sedlmayr catchamonkey <chris@sedlmayr.co.uk>
  */
-interface Interface
+interface ChartInterface
 {
     public function render() {}
 }
