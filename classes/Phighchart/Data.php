@@ -23,7 +23,16 @@ class Data
      **/
     public function addCount($key, $count)
     {
-        $this->_data[$key] = $count;
+        $this->_data['count'][$key] = $count;
+    }
+
+    /**
+     * Returns any defined data in the 'count' key
+     * @return Mixed, Array of count data if set, FALSE otherwise
+     */
+    public function getCounts()
+    {
+        return (isset($this->_data['count'])) ? $this->_data['count'] : FALSE;
     }
 
     /**
@@ -34,6 +43,6 @@ class Data
      **/
     public function addSeries($key, Array $series)
     {
-        $this->_data[$key] = $series;
+        $this->_data['series'][$key] = $series;
     }
 }

@@ -33,12 +33,30 @@ class Chart
     }
 
     /**
+     * Returns the current options instance
+     * @return Mixed, Phighchart\Options\Custom $_options if set, FALSE otherwise
+     */
+    public function getOptions()
+    {
+        return $this->_options;
+    }
+
+    /**
      * The Data to use when rendering this chart
      * @param Phighchart\Data $data stocked instance of chart data
      */
     public function setData(Data $data)
     {
         $this->_data = $data;
+    }
+
+    /**
+     * Returns the current data instance
+     * @return Mixed, Phighchart\Data $_data if set, FALSE otherwise
+     */
+    public function getData()
+    {
+        return $this->_data;
     }
 
     /**

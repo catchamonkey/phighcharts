@@ -22,7 +22,7 @@ class Pie extends Base implements ChartInterface
             {
                 
             }
-            $this->addToJavaScript('JavaScriptStrings');
+            $this->addToJavaScript($key.$count."\n");
         }
         return $this->getJavaScript();
     }

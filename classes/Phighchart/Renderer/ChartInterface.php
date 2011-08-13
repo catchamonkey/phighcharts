@@ -1,6 +1,7 @@
 <?php
 
 namespace Phighchart\Renderer;
+use Phighchart\Chart;
 
 /**
  * Renderer Interface
@@ -8,5 +9,5 @@ namespace Phighchart\Renderer;
  */
 interface ChartInterface
 {
-    public function render() {}
+    public function render(Chart $chart);
 }
