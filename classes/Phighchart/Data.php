@@ -36,6 +36,16 @@ class Data
     }
 
     /**
+     * Returns a single count value by key if defined
+     * @param string $key The count key you want to retrieve
+     * @return Mixed, Integer count if set, FALSE otherwise
+     */
+    public function getCount($key)
+    {
+        return (isset($this->_data['count'][$key])) ? $this->_data['count'][$key] : FALSE; 
+    }
+
+    /**
      * addSeries
      *
      * Adds a data series for the supplied key
