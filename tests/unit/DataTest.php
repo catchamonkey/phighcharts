@@ -21,16 +21,17 @@ class DataTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Checks the addCount and getCounts method
+     * Checks the addCount, getCount and getCounts method
      */
     public function testCountSetGet()
     {
         $data = new Phighchart\Data();
         $data->addCount('seo', 100);
         $data->addCount('ppc', 12);
-        $this->assertSame($data->getCount('seo'), 100);
-        $this->assertFalse($data->getCount('anotherKey'));
-        $this->assertNotSame($data->getCount('ppc'), 13);
+        $this->assertSame(100, $data->getCount('seo'));
+        $this->assertFalse($data->getCount('iDontExist'));
+        $this->assertNotSame(13, $data->getCount('ppc'));
         $this->assertInternalType('array', $data->getCounts());
+        $this->assertInternalType('integer', $data->getCount('ppc'));
     }
 }

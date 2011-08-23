@@ -32,7 +32,9 @@ class Data
      */
     public function getCounts()
     {
-        return (isset($this->_data['count'])) ? $this->_data['count'] : FALSE;
+        return (isset($this->_data['count'])) 
+            ? $this->_data['count'] 
+            : FALSE;
     }
 
     /**
@@ -42,7 +44,9 @@ class Data
      */
     public function getCount($key)
     {
-        return (isset($this->_data['count'][$key])) ? $this->_data['count'][$key] : FALSE; 
+        return (isset($this->_data['count'][$key])) 
+            ? $this->_data['count'][$key] 
+            : FALSE; 
     }
 
     /**
