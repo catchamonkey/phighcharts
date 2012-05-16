@@ -47,5 +47,5 @@ For example, you may want to always use green for apples when charting apples vs
     $chart->setRenderer(new Pie());
 
     // and render in the template
-    $chart->renderContainer('chart_example_1', 'span'); // div is the default container type (argument 2)
+    $chart->renderContainer('chart_example_1'); // optional second argument for element type
     $chart->render();
