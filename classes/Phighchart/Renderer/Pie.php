@@ -33,13 +33,13 @@ class Pie implements RendererInterface
                 $seriesItem->name   = $key;
                 $seriesItem->y      = $count;
                 $seriesItem->color  = $colour;
-                $series[]           = $seriesItem;
             }
             else
             {
                 // simple key value pairs can be passed in as an array
-                $series[] = array($key, $count);
+                $seriesItem         = array($key, $count);
             }
+            $series[] = $seriesItem;
         }
         // make it a pie chart and pass back in the prepared data
         $chartSeriesOptions = $chart->getOptionsType('series', new Container('series'));
@@ -50,6 +50,6 @@ class Pie implements RendererInterface
         // add the series as a nested array
         $ret['series']  = array($chartSeriesOptions->getOptions());
 
-        return "chart = new Highcharts.Chart(".json_encode($ret).");";
+        return "var chart; chart = new Highcharts.Chart(".json_encode($ret).");";
     }
 }

@@ -12,7 +12,6 @@
 
         <script type="text/javascript" charset="utf-8">
             (function($){ // encapsulate jQuery
-                var chart;
                 $(document).ready(function() {
                     <?php echo $chart->render(); ?>
                 });
