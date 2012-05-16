@@ -12,37 +12,28 @@ $loader->registerNamespaces(array(
 
 use Phighchart\Chart;
 use Phighchart\Options\Container as OptionsContainer;
-use Phighchart\Options\ExtendedContainer;
+use Phighchart\Options\ExtendedContainer as ExtendedOptionsContainer;
 use Phighchart\Data;
 use Phighchart\Renderer\Pie;
+
+$extOptions = new ExtendedOptionsContainer();
+$extOptions->setStickyColour('apples', '#629632');
+$extOptions->setStickyColour('oranges', '#CD3700');
 
 $options = new OptionsContainer('chart');
 $options->setRenderTo('chart_example_59');
 $options->setMarginRight(130);
 $options->setMarginBottom(25);
 
-$extOptions = new ExtendedContainer();
-$extOptions->setStickyColour('seo', '#e52d87');
-$extOptions->setStickyColour('ppc', '#3c3c3c');
-
 $titleOptions = new OptionsContainer('title');
 $titleOptions->setText('Monthly Details');
 $titleOptions->setX(-20);
 
-$data       = new Data();
-$data->addCount('SEO', 20);
-$data->addCount('PPC', 60);
-$data->addCount('seo', 20);
+$data = new Data();
+$data->addCount('Apples', 32);
+$data->addCount('Oranges', 68);
 
-// or for a series chart (line/spline etc)
-// $seoDataSeries  = new Data();
-// $seoDataSeries  = array(
-//    '2010-01-01' => 10,
-//    '2010-01-02' => 3,
-//    '2010-01-03' => 17
-// );
-// $data->addSeries('seo', $seoDataSeries);
-
+// put it all together
 $chart  = new Chart();
 $chart->addOptions($options);
 $chart->addOptions($titleOptions);

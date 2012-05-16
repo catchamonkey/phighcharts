@@ -30,7 +30,7 @@ class Chart
     /**
      * The options to use when rendering this chart
      * @param Container|ExtendedContainer $options stocked instance of chart options
-     * @throws InvalidArgumentException if wrong instance type passed in
+     * @throws \InvalidArgumentException if wrong instance type passed in
      */
     public function addOptions($options)
     {
