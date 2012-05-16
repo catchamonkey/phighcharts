@@ -32,9 +32,11 @@ class Data
      */
     public function getCounts()
     {
-        return (isset($this->_data['count'])) 
-            ? $this->_data['count'] 
-            : FALSE;
+        $ret = FALSE;
+        if (isset($this->_data['count'])) {
+            $ret = $this->_data['count'];
+        }
+        return $ret;
     }
 
     /**
@@ -44,9 +46,11 @@ class Data
      */
     public function getCount($key)
     {
-        return (isset($this->_data['count'][$key])) 
-            ? $this->_data['count'][$key] 
-            : FALSE; 
+        $ret = FALSE;
+        if ( isset($this->_data['count'][$key]) ) {
+            $ret = $this->_data['count'][$key];
+        }
+        return $ret;
     }
 
     /**
@@ -58,5 +62,14 @@ class Data
     public function addSeries($key, Array $series)
     {
         $this->_data['series'][$key] = $series;
+    }
+
+    public function getSeries()
+    {
+        $ret = FALSE;
+        if (isset($this->_data['series'])) {
+            $ret = $this->_data['series'];
+        }
+        return $ret;
     }
 }

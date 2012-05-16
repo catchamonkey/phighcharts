@@ -1,41 +1,51 @@
 #Phighcharts
-A PHP library for the Highcharts JavaScript charting library
+A PHP (Requires PHP 5.3) library for the Highcharts JavaScript charting library
 
 ##What does it do?
 Along with providing a nice OOP interface to create your charts, it also
-extends the functionality by adding such useful tools as
+extends the functionality by adding such useful tools as "Sticky Keys"
 
-###Adding a colour to be used by a certain key of data
-This will ensure that the same colour is used consistently for data with the same key
+###Sticky Keys
+A sticky key, is a configuration option that allows you to always use the same colour
+for certain keys.
+For example, you may want to always use green for apples when charting apples vs oranges.
 
-##Example
+##Example Pie Chart
+
+```php
+<?php
 
     use Phighchart\Chart;
-    use Phighchart\Options\Defaults;
+    use Phighchart\Options\Container as OptionsContainer;
+    use Phighchart\Options\ExtendedContainer as ExtendedOptionsContainer;
     use Phighchart\Data;
     use Phighchart\Renderer\Pie;
 
-    $options    = new Defaults();
-    $options->addStickyColour('seo', '#8f8f8f');
-    $options->addStickyColour('ppc', '#3c3c3c');
+    $extOptions = new ExtendedOptionsContainer();
+    $extOptions->setStickyColour('apples', '#629632');
+    $extOptions->setStickyColour('oranges', '#CD3700');
 
-    $data       = new Data();
-    $data->addCount('seo', 200);
-    $data->addCount('ppc', 150);
+    $options = new OptionsContainer('chart');
+    $options->setRenderTo('chart_example_1');
+    $options->setMarginRight(130);
+    $options->setMarginBottom(25);
 
-    // or for a series chart (line/spline etc)
-    $data           = new Data();
-    $seoDataSeries  = array(
-        '2010-01-01' => 10,
-        '2010-01-02' => 3,
-        '2010-01-03' => 17
-    );
-    $data->addSeries('seo', $seoDataSeries);
+    $titleOptions = new OptionsContainer('title');
+    $titleOptions->setText('Monthly Details');
+    $titleOptions->setX(-20);
 
-    $chart      = new Chart();
-    $chart->setOptions($options);
+    $data = new Data();
+    $data->addCount('Apples', 32);
+    $data->addCount('Oranges', 68);
+
+    // put it all together
+    $chart  = new Chart();
+    $chart->addOptions($options);
+    $chart->addOptions($titleOptions);
+    $chart->addOptions($extOptions);
     $chart->setData($data);
-    $chart->setRenderer('Pie');
+    $chart->setRenderer(new Pie());
 
-    // in the template
+    // and render in the template
+    $chart->renderContainer('chart_example_1', 'span'); // div is the default container type (argument 2)
     $chart->render();

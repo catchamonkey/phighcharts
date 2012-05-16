@@ -4,10 +4,10 @@ namespace Phighchart\Renderer;
 use Phighchart\Chart;
 
 /**
- * Renderer Interface
+ * Chart Renderer Interface
  * @author Chris Sedlmayr catchamonkey <chris@sedlmayr.co.uk>
  */
-interface ChartInterface
+interface RendererInterface
 {
     public function render(Chart $chart);
 }

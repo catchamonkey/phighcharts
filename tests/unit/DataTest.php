@@ -2,30 +2,19 @@
 /**
  * Tests for the Phighchart\Data class
  */
-require_once '/home/sites/phighcharts/poc/UniversalClassLoader.php';
-use Symfony\Component\ClassLoader\UniversalClassLoader;
-class DataTest extends PHPUnit_Framework_TestCase
+
+namespace Phighchart\Test;
+
+use Phighchart\Data;
+
+class DataTest extends \PHPUnit_Framework_TestCase
 {
-
-    private $_loader;
-
-    public function setUp()
-    {
-
-        $this->loader = new UniversalClassLoader();
-        $this->loader->register();
-
-        $this->loader->registerNamespaces(array(
-            'Phighchart' => __DIR__.'/../../classes'
-        ));
-    }
-
     /**
      * Checks the addCount, getCount and getCounts method
      */
-    public function testCountSetGet()
+    public function testCount()
     {
-        $data = new Phighchart\Data();
+        $data = new Data();
         $data->addCount('seo', 100);
         $data->addCount('ppc', 12);
         $this->assertSame(100, $data->getCount('seo'));
@@ -33,5 +22,18 @@ class DataTest extends PHPUnit_Framework_TestCase
         $this->assertNotSame(13, $data->getCount('ppc'));
         $this->assertInternalType('array', $data->getCounts());
         $this->assertInternalType('integer', $data->getCount('ppc'));
+    }
+
+    public function testSeries()
+    {
+        $data           = new Data();
+        $seoDataSeries  = array(
+            '2010-01-01' => 10,
+            '2010-01-02' => 3,
+            '2010-01-03' => 17
+        );
+        $data->addSeries('seo', $seoDataSeries);
+        $this->assertSame(array('seo' => $seoDataSeries), $data->getSeries());
+        $this->assertInternalType('array', $data->getSeries());
     }
 }
