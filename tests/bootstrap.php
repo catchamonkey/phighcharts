@@ -1,6 +1,6 @@
 <?php
 
-require_once '/home/sites/phighcharts/poc/UniversalClassLoader.php';
+require_once __DIR__.'/../poc/UniversalClassLoader.php';
 use Symfony\Component\ClassLoader\UniversalClassLoader;
 
 $loader = new UniversalClassLoader();
