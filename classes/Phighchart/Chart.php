@@ -30,6 +30,7 @@ class Chart
     /**
      * The options to use when rendering this chart
      * @param Container|ExtendedContainer $options stocked instance of chart options
+     * @return Chart $this Current instance
      * @throws \InvalidArgumentException if wrong instance type passed in
      */
     public function addOptions($options)
@@ -43,6 +44,7 @@ class Chart
                 "Options must be instance of Container or ExtendedContainer", 1
             );
         }
+        return $this;
     }
 
     /**
@@ -97,10 +99,12 @@ class Chart
     /**
      * The Data to use when rendering this chart
      * @param Phighchart\Data $data stocked instance of chart data
+     * @return Chart $this Current instance
      */
     public function setData(Data $data)
     {
         $this->_data = $data;
+        return $this;
     }
 
     /**
@@ -115,10 +119,12 @@ class Chart
     /**
      * The Renderer to use when rendering this chart
      * @param $renderer Renderer class instance
+     * @return Chart $this Current instance
      */
     public function setRenderer(RendererInterface $renderer)
     {
         $this->_renderer = $renderer;
+        return $this;
     }
 
     /**

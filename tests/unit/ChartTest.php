@@ -76,7 +76,8 @@ class ChartTest extends \PHPUnit_Framework_TestCase
     {
         $chart      = new Chart();
         $renderer   = new Pie();
-        $this->assertNull($chart->setRenderer($renderer));
+        // setRenderer should return current chart instance
+        $this->assertSame($chart, $chart->setRenderer($renderer));
     }
 
     /**

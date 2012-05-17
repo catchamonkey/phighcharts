@@ -35,8 +35,9 @@ $data->addCount('Oranges', 68);
 
 // put it all together
 $chart  = new Chart();
-$chart->addOptions($options);
-$chart->addOptions($titleOptions);
-$chart->addOptions($extOptions);
-$chart->setData($data);
-$chart->setRenderer(new Pie());
+$chart
+    ->addOptions($options)
+    ->addOptions($titleOptions)
+    ->addOptions($extOptions)
+    ->setData($data);
+    ->setRenderer(new Pie());
