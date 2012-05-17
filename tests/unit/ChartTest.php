@@ -19,7 +19,7 @@ class ChartTest extends \PHPUnit_Framework_TestCase
         $options    = new Container('test');
         $options->setFoo('bar');
         $chart->addOptions($options);
-        $this->assertTrue($chart->getOptionsType('test') instanceof Container);
+        $this->assertInstanceOf('Phighchart\Options\Container', $chart->getOptionsType('test'));
     }
 
     public function testAddOptionsExtendedContainer()
@@ -27,7 +27,7 @@ class ChartTest extends \PHPUnit_Framework_TestCase
         $chart      = new Chart();
         $options    = new ExtendedContainer();
         $chart->addOptions($options);
-        $this->assertTrue($chart->getExtendedOptions() instanceof ExtendedContainer);
+        $this->assertInstanceOf('Phighchart\Options\ExtendedContainer', $chart->getExtendedOptions());
     }
 
     /**
@@ -38,7 +38,7 @@ class ChartTest extends \PHPUnit_Framework_TestCase
         $chart      = new Chart();
         $options    = new \StdClass();
         $chart->addOptions($options);
-        $this->assert($chart->getExtendedOptions() instanceof ExtendedContainer);
+        $this->assertInstanceOf('Phighchart\Options\ExtendedContainer', $chart->getExtendedOptions());
     }
 
     public function testGetOptionsForOutput()
@@ -61,7 +61,7 @@ class ChartTest extends \PHPUnit_Framework_TestCase
         $chart      = new Chart();
         $options    = new ExtendedContainer();
         $chart->addOptions($options);
-        $this->assertTrue($chart->getExtendedOptions() instanceof ExtendedContainer);
+        $this->assertInstanceOf('Phighchart\Options\ExtendedContainer', $chart->getExtendedOptions());
     }
 
     public function testGetData()
@@ -69,7 +69,7 @@ class ChartTest extends \PHPUnit_Framework_TestCase
         $chart      = new Chart();
         $data       = new Data();
         $chart->setData($data);
-        $this->assertTrue($chart->getData() instanceof Data);
+        $this->assertInstanceOf('Phighchart\Data', $chart->getData());
     }
 
     public function testSetRenderer()

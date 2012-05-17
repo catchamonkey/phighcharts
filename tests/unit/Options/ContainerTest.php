@@ -19,7 +19,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     {
         $options = new Container('optionsType');
         $options->setOption('myKey', 'someValue');
-        $this->assertTrue($options->getOptions() instanceof \StdClass);
+        $this->assertInstanceOf('StdClass', $options->getOptions());
         $this->assertSame('someValue', $options->getOptions()->myKey);
     }
 
