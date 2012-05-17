@@ -40,5 +40,5 @@ $chart
     ->addOptions($options)
     ->addOptions($titleOptions)
     ->addOptions($extOptions)
-    ->setData($data);
+    ->setData($data)
     ->setRenderer(new Pie());

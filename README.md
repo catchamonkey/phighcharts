@@ -26,7 +26,7 @@ For example, you may want to always use green for apples when charting apples vs
     $extOptions->setStickyColour('oranges', '#CD3700');
 
     $options = new OptionsContainer('chart');
-    $options->setRenderTo('chart_example_1');
+    $options->setRenderTo('chart_example_59');
     $options->setMarginRight(130);
     $options->setMarginBottom(25);
 
@@ -35,19 +35,21 @@ For example, you may want to always use green for apples when charting apples vs
     $titleOptions->setX(-20);
 
     $data = new Data();
-    $data->addCount('Apples', 32);
-    $data->addCount('Oranges', 68);
+    $data
+        ->addCount('Apples', 32)
+        ->addCount('Oranges', 68);
 
     // put it all together
     $chart  = new Chart();
-    $chart->addOptions($options);
-    $chart->addOptions($titleOptions);
-    $chart->addOptions($extOptions);
-    $chart->setData($data);
-    $chart->setRenderer(new Pie());
+    $chart
+        ->addOptions($options)
+        ->addOptions($titleOptions)
+        ->addOptions($extOptions)
+        ->setData($data)
+        ->setRenderer(new Pie());
 
     // and render in the template
-    $chart->renderContainer('chart_example_1'); // optional second argument for element type
+    $chart->renderContainer('chart_example_59'); // optional second argument for element type
     $chart->render();
 ?>
 ```
