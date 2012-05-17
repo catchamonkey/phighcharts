@@ -2,7 +2,7 @@
 A PHP (Requires PHP 5.3) library for the Highcharts JavaScript charting library
 
 ##What does it do?
-Along with providing a nice OOP interface to create your charts, it also
+Along with providing a nice OO interface to create your charts, it also
 extends the functionality by adding such useful tools as "Sticky Keys"
 
 ###Sticky Keys
@@ -16,21 +16,21 @@ For example, you may want to always use green for apples when charting apples vs
 <?php
 
     use Phighchart\Chart;
-    use Phighchart\Options\Container as OptionsContainer;
-    use Phighchart\Options\ExtendedContainer as ExtendedOptionsContainer;
+    use Phighchart\Options\Container;
+    use Phighchart\Options\ExtendedContainer;
     use Phighchart\Data;
     use Phighchart\Renderer\Pie;
 
-    $extOptions = new ExtendedOptionsContainer();
+    $extOptions = new ExtendedContainer();
     $extOptions->setStickyColour('apples', '#629632');
     $extOptions->setStickyColour('oranges', '#CD3700');
 
-    $options = new OptionsContainer('chart');
+    $options = new Container('chart');
     $options->setRenderTo('chart_example_59');
     $options->setMarginRight(130);
     $options->setMarginBottom(25);
 
-    $titleOptions = new OptionsContainer('title');
+    $titleOptions = new Container('title');
     $titleOptions->setText('Monthly Details');
     $titleOptions->setX(-20);
 
@@ -49,7 +49,7 @@ For example, you may want to always use green for apples when charting apples vs
         ->setRenderer(new Pie());
 
     // and render in the template
-    $chart->renderContainer('chart_example_59'); // optional second argument for element type
+    $chart->renderContainer('chart_example_59');
     $chart->render();
 ?>
 ```
