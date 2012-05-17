@@ -1,4 +1,4 @@
-#Phighcharts
+#Phighcharts ![Project Build Status](https://secure.travis-ci.org/catchamonkey/phighcharts.png)
 A PHP (Requires PHP 5.3) library for the Highcharts JavaScript charting library
 
 ##What does it do?
