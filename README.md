@@ -49,7 +49,9 @@ For example, you may want to always use green for apples when charting apples vs
         ->setRenderer(new Pie());
 
     // and render in the template
-    $chart->renderContainer('chart_example_59');
+    $chart->renderContainer();
+    // or to change the element rendered
+    // $chart->renderContainer('span');
     $chart->render();
 ?>
 ```

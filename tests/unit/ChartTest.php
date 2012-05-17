@@ -83,7 +83,10 @@ class ChartTest extends \PHPUnit_Framework_TestCase
     public function testSetRenderContainer()
     {
         $chart      = new Chart();
-        $this->assertEquals($chart->renderContainer('chart_123'), '<div id="chart_123"></div>');
-        $this->assertEquals($chart->renderContainer('chart_121', 'span'), '<span id="chart_121"></span>');
+        $options    = new Container('chart');
+        $options->setRenderTo('chart_123');
+        $chart->addOptions($options);
+        $this->assertEquals($chart->renderContainer(), '<div id="chart_123"></div>');
+        $this->assertEquals($chart->renderContainer('span'), '<span id="chart_123"></span>');
     }
 }

@@ -62,6 +62,20 @@ class Container
         return $this;
     }
 
+    /**
+     * Returns a single option by key
+     * @param String $key The key of the option you want to retrieve
+     * @return Mixed, $ret option value if present, or $default if not (Default:FALSE)
+     */
+    public function getOption($key, $default = FALSE)
+    {
+        $ret = $default;
+        if (isset($this->_options->$key)) {
+            $ret = $this->_options->$key;
+        }
+        return $ret;
+    }
+
     public function getOptions()
     {
         return $this->_options;

@@ -129,13 +129,21 @@ class Chart
 
     /**
      * Renders the chart container
-     * @param String $id The Unique element ID on the page for this chart
      * @param String $type The type of HTML element the container should be
      * @return String An HTML element of defined type, with defined unique ID
      */
-    public function renderContainer($id, $type = 'div')
+    public function renderContainer($type = 'div')
     {
-        return '<'.$type.' id="'.$id.'"></'.$type.'>';
+        // fetch the renderTo option
+        if (
+            (!$options = $this->getOptionsType('chart')) ||
+            (!$renderTo = $options->getOption('renderTo'))
+        ) {
+            throw new \Exception(
+                "Render To option within chart options must be defined (renderTo)", 1
+            );
+        }
+        return '<'.$type.' id="'.$renderTo.'"></'.$type.'>';
     }
 
     /**

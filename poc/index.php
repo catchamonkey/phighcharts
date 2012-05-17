@@ -8,7 +8,7 @@
     </head>
     <body>
         <?php require_once('Examples.php'); ?>
-        <?php echo $chart->renderContainer('chart_example_59'); ?>
+        <?php echo $chart->renderContainer(); ?>
 
         <script type="text/javascript" charset="utf-8">
             (function($){ // encapsulate jQuery
