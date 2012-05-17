@@ -19,11 +19,12 @@ class Data
      * addCount
      *
      * Adds a data count for the supplied key
-     * @return NULL
+     * @return Data $this Current instance
      **/
     public function addCount($key, $count)
     {
         $this->_data['count'][$key] = $count;
+        return $this;
     }
 
     /**
@@ -58,10 +59,12 @@ class Data
      *
      * Adds a data series for the supplied key
      * @return NULL
+     * @return Data $this Current instance
      **/
     public function addSeries($key, Array $series)
     {
         $this->_data['series'][$key] = $series;
+        return $this;
     }
 
     public function getSeries()

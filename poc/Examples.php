@@ -30,8 +30,9 @@ $titleOptions->setText('Monthly Details');
 $titleOptions->setX(-20);
 
 $data = new Data();
-$data->addCount('Apples', 32);
-$data->addCount('Oranges', 68);
+$data
+    ->addCount('Apples', 32)
+    ->addCount('Oranges', 68);
 
 // put it all together
 $chart  = new Chart();

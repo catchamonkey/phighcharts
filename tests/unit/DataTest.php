@@ -15,8 +15,8 @@ class DataTest extends \PHPUnit_Framework_TestCase
     public function testCount()
     {
         $data = new Data();
-        $data->addCount('seo', 100);
-        $data->addCount('ppc', 12);
+        $this->assertSame($data, $data->addCount('seo', 100));
+        $this->assertSame($data, $data->addCount('ppc', 12));
         $this->assertSame(100, $data->getCount('seo'));
         $this->assertFalse($data->getCount('iDontExist'));
         $this->assertNotSame(13, $data->getCount('ppc'));
@@ -32,7 +32,7 @@ class DataTest extends \PHPUnit_Framework_TestCase
             '2010-01-02' => 3,
             '2010-01-03' => 17
         );
-        $data->addSeries('seo', $seoDataSeries);
+        $this->assertSame($data, $data->addSeries('seo', $seoDataSeries));
         $this->assertSame(array('seo' => $seoDataSeries), $data->getSeries());
         $this->assertInternalType('array', $data->getSeries());
     }
