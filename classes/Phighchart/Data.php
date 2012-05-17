@@ -58,7 +58,6 @@ class Data
      * addSeries
      *
      * Adds a data series for the supplied key
-     * @return NULL
      * @return Data $this Current instance
      **/
     public function addSeries($key, Array $series)

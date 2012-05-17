@@ -18,7 +18,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     public function testSetGetOption()
     {
         $options = new Container('optionsType');
-        $options->setOption('myKey', 'someValue');
+        $this->assertSame($options, $options->setOption('myKey', 'someValue'));
         $this->assertInstanceOf('StdClass', $options->getOptions());
         $this->assertSame('someValue', $options->getOptions()->myKey);
     }
@@ -27,7 +27,7 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     {
         $options = new Container('optionsType');
         $options->setRandomProperty(133);
-        $options->setAnotherRandomProperty($stdClass = new \StdClass());
+        $this->assertSame($options, $options->setAnotherRandomProperty($stdClass = new \StdClass()));
         $this->assertSame(133, $options->getOptions()->randomProperty);
         $this->assertSame($stdClass, $options->getOptions()->anotherRandomProperty);
     }
