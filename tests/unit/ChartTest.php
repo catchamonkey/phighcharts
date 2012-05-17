@@ -80,16 +80,6 @@ class ChartTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($chart, $chart->setRenderer($renderer));
     }
 
-    /**
-     * @expectedException Exception
-     */
-    public function testSetInvalidRenderer()
-    {
-        $chart      = new Chart();
-        $renderer   = new \StdClass();
-        $chart->setRenderer($renderer);
-    }
-
     public function testSetRenderContainer()
     {
         $chart      = new Chart();

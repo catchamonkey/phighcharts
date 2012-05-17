@@ -19,15 +19,6 @@ class PieTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Phighchart\Renderer\RendererInterface', $pie);
     }
 
-    /**
-     * @expectedException Exception
-     */
-    public function testInvalidRenderArgument()
-    {
-        $pie = new Pie();
-        $pie->render(new \StdClass());
-    }
-
     public function testRender()
     {
         $extOptions = new ExtendedOptionsContainer();
