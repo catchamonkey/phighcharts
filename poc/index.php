@@ -9,11 +9,13 @@
     <body>
         <?php require_once('Examples.php'); ?>
         <?php echo $chart->renderContainer(); ?>
+        <?php echo $lineChart->renderContainer(); ?>
 
         <script type="text/javascript" charset="utf-8">
             (function($){ // encapsulate jQuery
                 $(document).ready(function() {
                     <?php echo $chart->render(); ?>
+                    <?php echo $lineChart->render(); ?>
                 });
             })(jQuery);
         </script>
