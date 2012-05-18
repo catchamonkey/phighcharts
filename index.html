@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Phighcharts by catchamonkey</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Phighcharts</h1>
+        <p>PHP interface for the Highcharts JavaScript charting library</p>
+        <p class="view"><a href="https://github.com/catchamonkey/phighcharts">View the Project on GitHub <small>catchamonkey/phighcharts</small></a></p>
+        <ul>
+          <li><a href="https://github.com/catchamonkey/phighcharts/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/catchamonkey/phighcharts/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/catchamonkey/phighcharts">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Phighcharts <img src="https://secure.travis-ci.org/catchamonkey/phighcharts.png" alt="Project Build Status">
+</h1>
+
+<p>A PHP (Requires PHP 5.3) library for the Highcharts JavaScript charting library</p>
+
+<h2>What does it do?</h2>
+
+<p>Along with providing a nice OO interface to create your charts, it also
+extends the functionality by adding such useful tools as "Sticky Keys"</p>
+
+<h3>Sticky Keys</h3>
+
+<p>A sticky key, is a configuration option that allows you to always use the same colour
+for certain keys.
+For example, you may want to always use green for apples when charting apples vs oranges.</p>
+
+<h2>Example Pie Chart</h2>
+
+<div class="highlight">
+<pre><span class="cp">&lt;?php</span>
+
+    <span class="k">use</span> <span class="nx">Phighchart\Chart</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">Phighchart\Options\Container</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">Phighchart\Options\ExtendedContainer</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">Phighchart\Data</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">Phighchart\Renderer\Pie</span><span class="p">;</span>
+    <span class="k">use</span> <span class="nx">Phighchart\Renderer\Line</span><span class="p">;</span>
+
+    <span class="nv">$extOptions</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ExtendedContainer</span><span class="p">();</span>
+    <span class="nv">$extOptions</span><span class="o">-&gt;</span><span class="na">setStickyColour</span><span class="p">(</span><span class="s1">'apples'</span><span class="p">,</span> <span class="s1">'#629632'</span><span class="p">);</span>
+    <span class="nv">$extOptions</span><span class="o">-&gt;</span><span class="na">setStickyColour</span><span class="p">(</span><span class="s1">'oranges'</span><span class="p">,</span> <span class="s1">'#CD3700'</span><span class="p">);</span>
+
+    <span class="nv">$options</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Container</span><span class="p">(</span><span class="s1">'chart'</span><span class="p">);</span>
+    <span class="nv">$options</span><span class="o">-&gt;</span><span class="na">setRenderTo</span><span class="p">(</span><span class="s1">'chart_example_59'</span><span class="p">);</span>
+    <span class="nv">$options</span><span class="o">-&gt;</span><span class="na">setMarginRight</span><span class="p">(</span><span class="mi">130</span><span class="p">);</span>
+    <span class="nv">$options</span><span class="o">-&gt;</span><span class="na">setMarginBottom</span><span class="p">(</span><span class="mi">25</span><span class="p">);</span>
+
+    <span class="nv">$titleOptions</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Container</span><span class="p">(</span><span class="s1">'title'</span><span class="p">);</span>
+    <span class="nv">$titleOptions</span><span class="o">-&gt;</span><span class="na">setText</span><span class="p">(</span><span class="s1">'Monthly Details'</span><span class="p">);</span>
+    <span class="nv">$titleOptions</span><span class="o">-&gt;</span><span class="na">setX</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">);</span>
+
+    <span class="nv">$data</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Data</span><span class="p">();</span>
+    <span class="nv">$data</span>
+        <span class="o">-&gt;</span><span class="na">addCount</span><span class="p">(</span><span class="s1">'Apples'</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">addCount</span><span class="p">(</span><span class="s1">'Oranges'</span><span class="p">,</span> <span class="mi">68</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">addSeries</span><span class="p">(</span><span class="s1">'Apples'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'2012-05-01'</span> <span class="o">=&gt;</span> <span class="mi">12</span><span class="p">,</span>
+            <span class="s1">'2012-05-02'</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+            <span class="s1">'2012-05-03'</span> <span class="o">=&gt;</span> <span class="mi">33</span>
+        <span class="p">))</span>
+        <span class="o">-&gt;</span><span class="na">addSeries</span><span class="p">(</span><span class="s1">'Oranges'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'2012-05-01'</span> <span class="o">=&gt;</span> <span class="mi">32</span><span class="p">,</span>
+            <span class="s1">'2012-05-02'</span> <span class="o">=&gt;</span> <span class="mi">36</span><span class="p">,</span>
+            <span class="s1">'2012-05-03'</span> <span class="o">=&gt;</span> <span class="mi">18</span>
+        <span class="p">));</span>
+
+    <span class="c1">// put it all together</span>
+    <span class="nv">$chart</span>  <span class="o">=</span> <span class="k">new</span> <span class="nx">Chart</span><span class="p">();</span>
+    <span class="nv">$chart</span>
+        <span class="o">-&gt;</span><span class="na">addOptions</span><span class="p">(</span><span class="nv">$options</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">addOptions</span><span class="p">(</span><span class="nv">$titleOptions</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">addOptions</span><span class="p">(</span><span class="nv">$extOptions</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">setData</span><span class="p">(</span><span class="nv">$data</span><span class="p">)</span>
+        <span class="o">-&gt;</span><span class="na">setRenderer</span><span class="p">(</span><span class="k">new</span> <span class="nx">Pie</span><span class="p">());</span>
+
+    <span class="c1">// a line chart is similiar, and our data container holds series data for this</span>
+    <span class="nv">$lineChart</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$chart</span><span class="p">;</span>
+    <span class="nv">$options</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Container</span><span class="p">(</span><span class="s1">'chart'</span><span class="p">);</span>
+    <span class="nv">$options</span><span class="o">-&gt;</span><span class="na">setRenderTo</span><span class="p">(</span><span class="s1">'chart_example_60'</span><span class="p">);</span>
+    <span class="nv">$options</span><span class="o">-&gt;</span><span class="na">setMarginRight</span><span class="p">(</span><span class="mi">130</span><span class="p">);</span>
+    <span class="nv">$options</span><span class="o">-&gt;</span><span class="na">setMarginBottom</span><span class="p">(</span><span class="mi">25</span><span class="p">);</span>
+    <span class="nv">$lineChart</span><span class="o">-&gt;</span><span class="na">addOptions</span><span class="p">(</span><span class="nv">$options</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">setRenderer</span><span class="p">(</span><span class="k">new</span> <span class="nx">Line</span><span class="p">());</span>
+
+    <span class="c1">// and render in the template</span>
+    <span class="nv">$chart</span><span class="o">-&gt;</span><span class="na">renderContainer</span><span class="p">();</span>
+    <span class="c1">// or to change the element rendered</span>
+    <span class="c1">// $chart-&gt;renderContainer('span');</span>
+    <span class="nv">$chart</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">();</span>
+
+    <span class="c1">// and for the line</span>
+    <span class="nv">$lineChart</span><span class="o">-&gt;</span><span class="na">renderContainer</span><span class="p">();</span>
+    <span class="nv">$lineChart</span><span class="o">-&gt;</span><span class="na">render</span><span class="p">();</span>
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre>
+</div>
+
+
+<h2>Unit Tests</h2>
+
+<p>You can run the Unit Test suite with;</p>
+
+<pre><code>phpunit -c tests/ .
+</code></pre>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/catchamonkey">catchamonkey</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
