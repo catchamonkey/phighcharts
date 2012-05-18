@@ -84,6 +84,7 @@ class ChartTest extends \PHPUnit_Framework_TestCase
     {
         $chart      = new Chart();
         $options    = new Container('chart');
+        $chart->setRenderer(new Pie());
         $options->setRenderTo('chart_123');
         $chart->addOptions($options);
         $this->assertEquals($chart->renderContainer(), '<div id="chart_123"></div>');

@@ -20,6 +20,7 @@ For example, you may want to always use green for apples when charting apples vs
     use Phighchart\Options\ExtendedContainer;
     use Phighchart\Data;
     use Phighchart\Renderer\Pie;
+    use Phighchart\Renderer\Line;
 
     $extOptions = new ExtendedContainer();
     $extOptions->setStickyColour('apples', '#629632');
@@ -37,7 +38,17 @@ For example, you may want to always use green for apples when charting apples vs
     $data = new Data();
     $data
         ->addCount('Apples', 32)
-        ->addCount('Oranges', 68);
+        ->addCount('Oranges', 68)
+        ->addSeries('Apples', array(
+            '2012-05-01' => 12,
+            '2012-05-02' => 3,
+            '2012-05-03' => 33
+        ))
+        ->addSeries('Oranges', array(
+            '2012-05-01' => 32,
+            '2012-05-02' => 36,
+            '2012-05-03' => 18
+        ));
 
     // put it all together
     $chart  = new Chart();
@@ -48,11 +59,23 @@ For example, you may want to always use green for apples when charting apples vs
         ->setData($data)
         ->setRenderer(new Pie());
 
+    // a line chart is similiar, and our data container holds series data for this
+    $lineChart = clone $chart;
+    $options = new Container('chart');
+    $options->setRenderTo('chart_example_60');
+    $options->setMarginRight(130);
+    $options->setMarginBottom(25);
+    $lineChart->addOptions($options)->setRenderer(new Line());
+
     // and render in the template
     $chart->renderContainer();
     // or to change the element rendered
     // $chart->renderContainer('span');
     $chart->render();
+    
+    // and for the line
+    $lineChart->renderContainer();
+    $lineChart->render();
 ?>
 ```
 
