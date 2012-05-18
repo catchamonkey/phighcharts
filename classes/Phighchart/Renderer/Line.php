@@ -36,7 +36,7 @@ class Line extends Base implements RendererInterface
             $seriesItem         = new \StdClass();
             $seriesItem->name   = $key;
             $seriesItem->data   = array_values($seriesData);
-            if ($colour = $chart->getExtendedOptions()->getStickyColour($key, TRUE))
+            if ($colour = $chart->getExtendedOptions()->getStickyColour($key))
             {
                 $seriesItem->color  = $colour;
             }

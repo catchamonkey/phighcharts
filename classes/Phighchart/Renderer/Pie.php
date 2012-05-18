@@ -27,7 +27,7 @@ class Pie extends Base implements RendererInterface
         foreach ($chart->getData()->getCounts() as $key => $count)
         {
             // add each one to the chart along with a sticky colour if present
-            if ($colour = $chart->getExtendedOptions()->getStickyColour($key, TRUE))
+            if ($colour = $chart->getExtendedOptions()->getStickyColour($key))
             {
                 // complex sets must be a StdClass
                 $seriesItem         = new \StdClass();
