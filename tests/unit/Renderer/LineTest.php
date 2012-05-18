@@ -1,6 +1,6 @@
 <?php
 /**
- * Tests for the Phighchart\Options\Container class
+ * Tests for the Phighchart\Options\Line class
  */
 
 namespace Phighchart\Test\Renderer;
@@ -9,14 +9,14 @@ use Phighchart\Chart;
 use Phighchart\Options\Container as OptionsContainer;
 use Phighchart\Options\ExtendedContainer as ExtendedOptionsContainer;
 use Phighchart\Data;
-use Phighchart\Renderer\Pie;
+use Phighchart\Renderer\Line;
 
-class PieTest extends \PHPUnit_Framework_TestCase
+class LineTest extends \PHPUnit_Framework_TestCase
 {
-    public function testPieImplementsInterface()
+    public function testLineImplementsInterface()
     {
-        $pie = new Pie();
-        $this->assertInstanceOf('Phighchart\Renderer\RendererInterface', $pie);
+        $line = new Line();
+        $this->assertInstanceOf('Phighchart\Renderer\RendererInterface', $line);
     }
 
     public function testRender()
@@ -35,8 +35,16 @@ class PieTest extends \PHPUnit_Framework_TestCase
         $titleOptions->setX(-20);
 
         $data = new Data();
-        $data->addCount('Apples', 32);
-        $data->addCount('Oranges', 68);
+        $data->addSeries('Apples', array(
+            '2012-05-01' => 12,
+            '2012-05-02' => 3,
+            '2012-05-03' => 33
+        ))
+        ->addSeries('Oranges', array(
+            '2012-05-01' => 32,
+            '2012-05-02' => 36,
+            '2012-05-03' => 18
+        ));
 
         // put it all together
         $chart  = new Chart();
@@ -44,12 +52,13 @@ class PieTest extends \PHPUnit_Framework_TestCase
         $chart->addOptions($titleOptions);
         $chart->addOptions($extOptions);
         $chart->setData($data);
-        $chart->setRenderer(new Pie());
+        $chart->setRenderer(new Line());
 
         // test the full expected output
         $this->assertSame(
-            'var chart; chart = new Highcharts.Chart({"chart":{"renderTo":"chart_example_59","marginRight":130,"marginBottom":25},"title":{"text":"Monthly Details","x":-20},"series":[{"type":"pie","data":[{"name":"Apples","y":32,"color":"#629632"},{"name":"Oranges","y":68,"color":"#CD3700"}]}]});',
+            'var chart_example_59; chart_example_59 = new Highcharts.Chart({"chart":{"renderTo":"chart_example_59","marginRight":130,"marginBottom":25,"type":"line"},"title":{"text":"Monthly Details","x":-20},"xAxis":{"categories":["2012-05-01","2012-05-02","2012-05-03"]},"series":[{"name":"Apples","data":[12,3,33],"color":"#629632"},{"name":"Oranges","data":[32,36,18],"color":"#CD3700"}]});',
             $chart->render()
         );
+        $this->assertSame('<div id="chart_example_59"></div>', $chart->renderContainer());
     }
 }

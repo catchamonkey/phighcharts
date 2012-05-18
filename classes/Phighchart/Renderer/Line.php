@@ -8,11 +8,11 @@ use Phighchart\Options\Container;
 use Phighchart\Chart;
 
 /**
- * Pie Renderer
- * The Pie renderer will output a Pie chart
+ * Line Renderer
+ * The Line renderer will output a Line chart
  * @author Chris Sedlmayr catchamonkey <chris@sedlmayr.co.uk>
  */
-class Pie extends Base implements RendererInterface
+class Line extends Base implements RendererInterface
 {
     /**
      * Creates and returns the JSON encoded chart details, options and data
@@ -22,34 +22,37 @@ class Pie extends Base implements RendererInterface
      */
     public function render(Chart $chart)
     {
+        // make it a line chart
+        $chartOptions = $chart->getOptionsType('chart', new Container('chart'));
+        $chartOptions->setType('line');
+        $chart->addOptions($chartOptions);
+        
         // prepare the data
         $series = array();
-        foreach ($chart->getData()->getCounts() as $key => $count)
+        // for each series of data (a series is a line)
+        foreach ($chart->getData()->getSeries() as $key => $seriesData)
         {
             // add each one to the chart along with a sticky colour if present
+            $seriesItem         = new \StdClass();
+            $seriesItem->name   = $key;
+            $seriesItem->data   = array_values($seriesData);
             if ($colour = $chart->getExtendedOptions()->getStickyColour($key, TRUE))
             {
-                // complex sets must be a StdClass
-                $seriesItem         = new \StdClass();
-                $seriesItem->name   = $key;
-                $seriesItem->y      = $count;
                 $seriesItem->color  = $colour;
-            }
-            else
-            {
-                // simple key value pairs can be passed in as an array
-                $seriesItem         = array($key, $count);
             }
             $series[] = $seriesItem;
         }
-        // make it a pie chart and pass back in the prepared data
-        $chartSeriesOptions = $chart->getOptionsType('series', new Container('series'));
-        $chartSeriesOptions->setType('pie');
-        $chartSeriesOptions->setData($series);
+
+        // create the X-Axis categories from the last seen series
+        $xAxis = new Container('xAxis');
+        $xAxis->setCategories(array_keys($seriesData));
+        // add to the chart
+        $chart->addOptions($xAxis);
+
         // get all the existing options
         $options            = $chart->getOptionsForOutput();
-        // add the series as a nested array
-        $options['series']  = array($chartSeriesOptions->getOptions());
+        // add the series data
+        $options['series']  = $series;
 
         // send back the prepared chart JS
         return $this->outputJavaScript($chart, $options);
