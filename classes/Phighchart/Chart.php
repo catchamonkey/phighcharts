@@ -39,6 +39,10 @@ class Chart
             $this->_options[$options->getType()] = $options;
         } elseif ($options instanceof ExtendedContainer) {
             $this->_extendedOptions = $options;
+        } elseif (is_array($options)) {
+            foreach ($options as $option) {
+                $this->addOptions($option);
+            }
         } else {
             throw new \InvalidArgumentException(
                 "Options must be instance of Container or ExtendedContainer", 1

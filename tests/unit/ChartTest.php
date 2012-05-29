@@ -22,6 +22,23 @@ class ChartTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Phighchart\Options\Container', $chart->getOptionsType('test'));
     }
 
+    public function testAddMultipleOptionsContainers()
+    {
+        $chart      = new Chart();
+        $options    = new Container('test');
+        $options->setFoo('bar');
+        $options2   = new Container('test2');
+        $options2->setFoo('bar1');
+        $options2->setFoo2('bar2');
+        $chart->addOptions(array($options, $options2));
+
+        $this->assertInstanceOf('Phighchart\Options\Container', $chart->getOptionsType('test'));
+        $this->assertInstanceOf('Phighchart\Options\Container', $chart->getOptionsType('test2'));
+        $this->assertSame($chart->getOptionsType('test')->getOption('foo'), 'bar');
+        $this->assertSame($chart->getOptionsType('test2')->getOption('foo'), 'bar1');
+        $this->assertSame($chart->getOptionsType('test2')->getOption('foo2'), 'bar2');
+    }
+
     public function testAddOptionsExtendedContainer()
     {
         $chart      = new Chart();
