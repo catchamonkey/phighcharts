@@ -24,6 +24,7 @@ class Data
     public function addCount($key, $count)
     {
         $this->_data['count'][$key] = $count;
+
         return $this;
     }
 
@@ -37,12 +38,13 @@ class Data
         if (isset($this->_data['count'])) {
             $ret = $this->_data['count'];
         }
+
         return $ret;
     }
 
     /**
      * Returns a single count value by key if defined
-     * @param string $key The count key you want to retrieve
+     * @param  string $key The count key you want to retrieve
      * @return Mixed, Integer count if set, FALSE otherwise
      */
     public function getCount($key)
@@ -51,6 +53,7 @@ class Data
         if ( isset($this->_data['count'][$key]) ) {
             $ret = $this->_data['count'][$key];
         }
+
         return $ret;
     }
 
@@ -63,6 +66,7 @@ class Data
     public function addSeries($key, Array $series)
     {
         $this->_data['series'][$key] = $series;
+
         return $this;
     }
 
@@ -72,6 +76,7 @@ class Data
         if (isset($this->_data['series'])) {
             $ret = $this->_data['series'];
         }
+
         return $ret;
     }
 }
