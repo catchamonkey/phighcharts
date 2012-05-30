@@ -17,7 +17,7 @@ class Line extends Base implements RendererInterface
     /**
      * Creates and returns the JSON encoded chart details, options and data
      * from the injected Chart, generally called by the view layer
-     * @param Chart $chart  Instance of Phighchart\Chart
+     * @param  Chart  $chart Instance of Phighchart\Chart
      * @return String $ret  The JSON string to display the complete chart
      */
     public function render(Chart $chart)
@@ -26,18 +26,16 @@ class Line extends Base implements RendererInterface
         $chartOptions = $chart->getOptionsType('chart', new Container('chart'));
         $chartOptions->setType('line');
         $chart->addOptions($chartOptions);
-        
+
         // prepare the data
         $series = array();
         // for each series of data (a series is a line)
-        foreach ($chart->getData()->getSeries() as $key => $seriesData)
-        {
+        foreach ($chart->getData()->getSeries() as $key => $seriesData) {
             // add each one to the chart along with a sticky colour if present
             $seriesItem         = new \StdClass();
             $seriesItem->name   = $key;
             $seriesItem->data   = array_values($seriesData);
-            if ($colour = $chart->getExtendedOptions()->getStickyColour($key))
-            {
+            if ($colour = $chart->getExtendedOptions()->getStickyColour($key)) {
                 $seriesItem->color  = $colour;
             }
             $series[] = $seriesItem;

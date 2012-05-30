@@ -29,9 +29,9 @@ class Chart
 
     /**
      * The options to use when rendering this chart
-     * @param Container|ExtendedContainer $options stocked instance of chart options
-     * @return Chart $this Current instance
-     * @throws \InvalidArgumentException if wrong instance type passed in
+     * @param  Container|ExtendedContainer $options stocked instance of chart options
+     * @return Chart                       $this Current instance
+     * @throws \InvalidArgumentException   if wrong instance type passed in
      */
     public function addOptions($options)
     {
@@ -48,6 +48,7 @@ class Chart
                 "Options must be instance of Container or ExtendedContainer", 1
             );
         }
+
         return $this;
     }
 
@@ -74,12 +75,13 @@ class Chart
                 $ret[$type] = $options->getOptions();
             }
         }
+
         return $ret;
     }
 
     /**
      * Returns a single set of options by type
-     * @param String $type The type of options you want to retrieve
+     * @param  String $type The type of options you want to retrieve
      * @return Mixed, Container|ExtendedContainer if present, or $default if not (Default:FALSE)
      */
     public function getOptionsType($type, $default = FALSE)
@@ -88,6 +90,7 @@ class Chart
         if (isset($this->_options[$type])) {
             $ret = $this->_options[$type];
         }
+
         return $ret;
     }
 
@@ -102,12 +105,13 @@ class Chart
 
     /**
      * The Data to use when rendering this chart
-     * @param Phighchart\Data $data stocked instance of chart data
-     * @return Chart $this Current instance
+     * @param  Phighchart\Data $data stocked instance of chart data
+     * @return Chart           $this Current instance
      */
     public function setData(Data $data)
     {
         $this->_data = $data;
+
         return $this;
     }
 
@@ -128,13 +132,14 @@ class Chart
     public function setRenderer(RendererInterface $renderer)
     {
         $this->_renderer = $renderer;
+
         return $this;
     }
 
     /**
      * Renders the chart container
-     * @param String $type The type of HTML element the container should be
-     * @return The response of renderContainer() of $this->_renderer
+     * @param  String $type The type of HTML element the container should be
+     * @return The    response of renderContainer() of $this->_renderer
      */
     public function renderContainer($type = 'div')
     {
@@ -148,12 +153,12 @@ class Chart
     public function render()
     {
         // before we render we must have options and data
-        if (!$this->_options || !$this->_data || !$this->_renderer)
-        {
+        if (!$this->_options || !$this->_data || !$this->_renderer) {
             throw new Exception(
                 "Before rendering you must provide data, options and a renderer", 1
             );
         }
+
         return $this->_renderer->render($this);
     }
 }
