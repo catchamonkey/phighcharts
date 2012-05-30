@@ -17,26 +17,22 @@ class Pie extends Base implements RendererInterface
     /**
      * Creates and returns the JSON encoded chart details, options and data
      * from the injected Chart, generally called by the view layer
-     * @param Chart $chart  Instance of Phighchart\Chart
+     * @param  Chart  $chart Instance of Phighchart\Chart
      * @return String $ret  The JSON string to display the complete chart
      */
     public function render(Chart $chart)
     {
         // prepare the data
         $series = array();
-        foreach ($chart->getData()->getCounts() as $key => $count)
-        {
+        foreach ($chart->getData()->getCounts() as $key => $count) {
             // add each one to the chart along with a sticky colour if present
-            if ($colour = $chart->getExtendedOptions()->getStickyColour($key))
-            {
+            if ($colour = $chart->getExtendedOptions()->getStickyColour($key)) {
                 // complex sets must be a StdClass
                 $seriesItem         = new \StdClass();
                 $seriesItem->name   = $key;
                 $seriesItem->y      = $count;
                 $seriesItem->color  = $colour;
-            }
-            else
-            {
+            } else {
                 // simple key value pairs can be passed in as an array
                 $seriesItem         = array($key, $count);
             }
