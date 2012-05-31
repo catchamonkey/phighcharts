@@ -24,6 +24,16 @@ class DataTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('integer', $data->getCount('ppc'));
     }
 
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testInvalidCount()
+    {
+        $data           = new Data();
+        $data->addCount('seo', 123);
+        $data->addCount('seo', 'bar');
+    }
+
     public function testSeries()
     {
         $data           = new Data();
@@ -35,5 +45,19 @@ class DataTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($data, $data->addSeries('seo', $seoDataSeries));
         $this->assertSame(array('seo' => $seoDataSeries), $data->getSeries());
         $this->assertInternalType('array', $data->getSeries());
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testInvalidSeries()
+    {
+        $data           = new Data();
+        $seoDataSeries  = array(
+            '2010-01-01' => 10,
+            '2010-01-02' => '3',
+            '2010-01-03' => 17
+        );
+        $data->addSeries('seo', $seoDataSeries);
     }
 }
