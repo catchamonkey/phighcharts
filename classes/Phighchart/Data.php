@@ -23,6 +23,15 @@ class Data
      **/
     public function addCount($key, $count)
     {
+        // count must be integer of float
+        if (!is_integer($count) || is_float($count)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Count value must be integer or float, "
+                    . "'%s' value is type '%s'", $key, gettype($count)
+                )
+            );
+        }
         $this->_data['count'][$key] = $count;
 
         return $this;
@@ -65,6 +74,17 @@ class Data
      **/
     public function addSeries($key, Array $series)
     {
+        // all members of series, must be integer or float
+        foreach ($series as $memberKey => $member) {
+            if (!(is_float($member) || is_integer($member))) {
+                throw new \InvalidArgumentException(
+                    sprintf(
+                        "All members of a series must be integer or float, "
+                        . "member key '%s' has value of type '%s'", $memberKey, gettype($member)
+                    )
+                );
+            }
+        }
         $this->_data['series'][$key] = $series;
 
         return $this;
