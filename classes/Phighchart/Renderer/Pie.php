@@ -25,17 +25,15 @@ class Pie extends Base implements RendererInterface
         // prepare the data
         $series = array();
         foreach ($chart->getData()->getCounts() as $key => $count) {
-            // add each one to the chart along with a sticky colour if present
+            // prepare the series item
+            $seriesItem = new \StdClass();
+            $seriesItem->name = $key;
+            $seriesItem->y    = $count;
+            // add the sticky colour if present
             if ($colour = $chart->getExtendedOptions()->getStickyColour($key)) {
-                // complex sets must be a StdClass
-                $seriesItem         = new \StdClass();
-                $seriesItem->name   = $key;
-                $seriesItem->y      = $count;
                 $seriesItem->color  = $colour;
-            } else {
-                // simple key value pairs can be passed in as an array
-                $seriesItem         = array($key, $count);
             }
+            // add to the series
             $series[] = $seriesItem;
         }
         // make it a pie chart and pass back in the prepared data
