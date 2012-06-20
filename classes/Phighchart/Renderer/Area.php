@@ -41,7 +41,7 @@ class Area extends Base implements RendererInterface
         }
 
         //create labels for xAxis based on the last seen series data
-        $xAxis = new Container( 'xAxis' );
+        $xAxis = $chart->getOptionsType( 'xAxis', new Container( 'xAxis' ) );
         $xAxis->setCategories( array_keys($seriesData) );
         $chart->addOptions( $xAxis );
 
