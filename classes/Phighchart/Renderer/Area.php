@@ -29,7 +29,7 @@ class Area extends Base implements RendererInterface
             $member->name = $key;
             $member->data = array_values( $seriesData );
             //check if a sticky colour is defined for the key of this member
-            if ($colour = $chart->getExtendedOptions()->getStickyColour($key)) {
+            if ($colour = $this->_getStickyColour($chart,$key)) {
                 $member->color = $colour;
             }
             //commit member to the series
@@ -46,5 +46,18 @@ class Area extends Base implements RendererInterface
         $options['series'] = $series;
 
         return $this->outputJavaScript($chart, $options);
+    }
+
+    private function _getStickyColour( Chart $chart, $key )
+    {
+        if(!$chart->getExtendedOptions()) {
+            return FALSE;
+        }
+
+        if($colour = $chart->getExtendedOptions()->getStickyColour($key)) {
+            return $colour;
+        }
+
+        return FALSE;
     }
 }
