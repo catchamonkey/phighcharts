@@ -47,17 +47,4 @@ class Area extends Base implements RendererInterface
 
         return $this->outputJavaScript($chart, $options);
     }
-
-    private function _getStickyColour( Chart $chart, $key )
-    {
-        if(!$chart->getExtendedOptions()) {
-            return FALSE;
-        }
-
-        if($colour = $chart->getExtendedOptions()->getStickyColour($key)) {
-            return $colour;
-        }
-
-        return FALSE;
-    }
 }
