@@ -35,14 +35,14 @@ class Line extends Base implements RendererInterface
             $seriesItem         = new \StdClass();
             $seriesItem->name   = $key;
             $seriesItem->data   = array_values($seriesData);
-            if ($colour = $chart->getExtendedOptions()->getStickyColour($key)) {
+            if ($colour = $this->_getStickyColour($chart, $key)) {
                 $seriesItem->color  = $colour;
             }
             $series[] = $seriesItem;
         }
 
         // create the X-Axis categories from the last seen series
-        $xAxis = new Container('xAxis');
+        $xAxis = $chart->getOptionsType('xAxis', new Container('xAxis'));
         $xAxis->setCategories(array_keys($seriesData));
         // add to the chart
         $chart->addOptions($xAxis);
