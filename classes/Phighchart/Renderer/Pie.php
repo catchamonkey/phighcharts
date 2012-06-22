@@ -30,7 +30,7 @@ class Pie extends Base implements RendererInterface
             $seriesItem->name = $key;
             $seriesItem->y    = $count;
             // add the sticky colour if present
-            if ($colour = $chart->getExtendedOptions()->getStickyColour($key)) {
+            if ($colour = $this->_getStickyColour($chart, $key)) {
                 $seriesItem->color  = $colour;
             }
             // add to the series
