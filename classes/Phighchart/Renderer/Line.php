@@ -42,7 +42,7 @@ class Line extends Base implements RendererInterface
         }
 
         // create the X-Axis categories from the last seen series
-        $xAxis = new Container('xAxis');
+        $xAxis = $chart->getOptionsType('xAxis', new Container('xAxis'));
         $xAxis->setCategories(array_keys($seriesData));
         // add to the chart
         $chart->addOptions($xAxis);
