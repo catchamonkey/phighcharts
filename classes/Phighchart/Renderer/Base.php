@@ -60,20 +60,20 @@ abstract class Base
     /**
      * Returns sticky colour for the given key if the extended options are set
      * and a sticky colour is defined for the given key.
-     * @param  Chart $chart Chart instances
-     * @param  string $key Key to get the sticky colour for
-     * @return bool FALSE if extended options not set or the sticky colour not
+     * @param  Chart  $chart Chart instances
+     * @param  string $key   Key to get the sticky colour for
+     * @return bool   FALSE if extended options not set or the sticky colour not
      * found string sticky colour if found for the given key
      * @author Shahrukh Omar <shahrukhomar@gmail.com>
      */
     protected function _getStickyColour(Chart $chart, $key)
     {
         //return False if the extended options are not set
-        if(!$chart->getExtendedOptions()) {
+        if (!$chart->getExtendedOptions()) {
             return FALSE;
         }
         //return the sticky colour if it is set for the given key
-        if($colour = $chart->getExtendedOptions()->getStickyColour($key)) {
+        if ($colour = $chart->getExtendedOptions()->getStickyColour($key)) {
             return $colour;
         }
 
