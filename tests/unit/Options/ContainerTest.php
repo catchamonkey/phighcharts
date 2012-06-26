@@ -9,10 +9,18 @@ use Phighchart\Options\Container;
 
 class ContainerTest extends \PHPUnit_Framework_TestCase
 {
-    public function testGetType()
+    public function testGetOptionsType()
     {
         $options = new Container('optionsType');
-        $this->assertSame('optionsType', $options->getType());
+        $this->assertSame('optionsType', $options->getOptionsType());
+    }
+
+    public function testSetOptionsType()
+    {
+        //do not provide the options type as the constructor argument
+        $options = new Container();
+        $options->setOptionsType('optionsType');
+        $this->assertSame('optionsType', $options->getOptionsType());
     }
 
     public function testSetGetOption()
