@@ -23,6 +23,15 @@ class Container
     }
 
     /**
+     * Sets the options type for this instance of the options container
+     * @param string $optionsType type of options
+     */
+    public function setOptionsType($optionsType)
+    {
+        $this->_optionsType = $optionsType;
+    }
+
+    /**
      * Returns the type of options you are defining
      */
     public function getOptionsType()
