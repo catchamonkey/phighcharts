@@ -36,7 +36,7 @@ class Chart
     public function addOptions($options)
     {
         if ($options instanceof Container) {
-            $this->_options[$options->getType()] = $options;
+            $this->_options[$options->getOptionsType()] = $options;
         } elseif ($options instanceof ExtendedContainer) {
             $this->_extendedOptions = $options;
         } elseif (is_array($options)) {

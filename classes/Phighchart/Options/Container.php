@@ -13,21 +13,21 @@ class Container
     /**
      * The type of options being created (a section within highcharts options)
      */
-    private $_type;
+    private $_optionsType;
     private $_options;
 
-    public function __construct($type = null)
+    public function __construct($optionsType = null)
     {
-        $this->_type    = $type;
-        $this->_options = new \StdClass();
+        $this->_optionsType     = $optionsType;
+        $this->_options         = new \StdClass();
     }
 
     /**
      * Returns the type of options you are defining
      */
-    public function getType()
+    public function getOptionsType()
     {
-        return $this->_type;
+        return $this->_optionsType;
     }
 
     /**
