@@ -15,6 +15,14 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('optionsType', $options->getOptionsType());
     }
 
+    public function testSetOptionsType()
+    {
+        //do not provide the options type as the constructor argument
+        $options = new Container();
+        $options->setOptionsType('optionsType');
+        $this->assertSame('optionsType', $options->getOptionsType());
+    }
+
     public function testSetGetOption()
     {
         $options = new Container('optionsType');
