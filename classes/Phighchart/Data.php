@@ -67,6 +67,21 @@ class Data
     }
 
     /**
+     * Returns the total count for all 'count' type data
+     * @return Integer count of all 'count' type data, 0 default
+     */
+    public function getCountTotal()
+    {
+        $ret = 0;
+        if (isset($this->_data['count'])) {
+            foreach ($this->_data['count'] as $key => $count) {
+                $ret += $count;
+            }
+        }
+        return $ret;
+    }
+
+    /**
      * addSeries
      *
      * Adds a data series for the supplied key
