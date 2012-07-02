@@ -34,6 +34,20 @@ class DataTest extends \PHPUnit_Framework_TestCase
         $data->addCount('seo', 'bar');
     }
 
+    public function testGetCountTotal()
+    {
+        $data           = new Data();
+        $data->addCount('seo', 123);
+        $data->addCount('ppc', 23);
+        $this->assertSame(146, $data->getCountTotal());
+    }
+
+    public function testGetNoCountTotal()
+    {
+        $data           = new Data();
+        $this->assertSame(0, $data->getCountTotal());
+    }
+
     public function testSeries()
     {
         $data           = new Data();
