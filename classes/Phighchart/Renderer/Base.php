@@ -3,6 +3,7 @@
 namespace Phighchart\Renderer;
 
 use Phighchart\Chart;
+use Phighchart\PropertyType\Raw;
 
 /**
  * Renderer Base
@@ -21,8 +22,9 @@ abstract class Base
     {
         // use the renderTo id as the JS variable name
         $jsVar = $this->getRenderTo($chart);
+        $jsRender = "var ".$jsVar."; ".$jsVar." = new Highcharts.Chart(".json_encode($options).");";
 
-        return "var ".$jsVar."; ".$jsVar." = new Highcharts.Chart(".json_encode($options).");";
+        return Raw::decode($jsRender);
     }
 
     /**
