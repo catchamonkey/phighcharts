@@ -29,23 +29,25 @@ class Line extends Base implements RendererInterface
 
         // prepare the data
         $series = array();
+
+        //formatter for rendering this chart
+        $format = $chart->getFormat();
+
         // for each series of data (a series is a line)
         foreach ($chart->getData()->getSeries() as $key => $seriesData) {
             // add each one to the chart along with a sticky colour if present
             $seriesItem         = new \StdClass();
             $seriesItem->name   = $key;
-            $seriesItem->data   = array_values($seriesData);
+            $seriesItem->data   = $format->getFormattedChartData($seriesData);
             if ($colour = $this->_getStickyColour($chart, $key)) {
                 $seriesItem->color  = $colour;
             }
             $series[] = $seriesItem;
         }
 
-        // create the X-Axis categories from the last seen series
-        $xAxis = $chart->getOptionsType('xAxis', new Container('xAxis'));
-        $xAxis->setCategories(array_keys($seriesData));
-        // add to the chart
-        $chart->addOptions($xAxis);
+        if ($formatOptions = $format->getFormatOptions($chart)) {
+            $chart->addOptions($formatOptions);
+        }
 
         // get all the existing options
         $options            = $chart->getOptionsForOutput();
