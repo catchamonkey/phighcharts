@@ -24,10 +24,13 @@ class Area extends Base implements RendererInterface
         //prepare series array
         $series = array();
 
+        //formatter for rendering this chart
+        $format = $chart->getFormat();
+
         foreach ($chart->getData()->getSeries() as $key => $seriesData) {
-            $member = new \StdClass();
+            $member       = new \StdClass();
             $member->name = $key;
-            $member->data = array_values( $seriesData );
+            $member->data = $format->getFormattedChartData($seriesData);
             //check if a sticky colour is defined for the key of this member
             if ($colour = $this->_getStickyColour($chart,$key)) {
                 $member->color = $colour;
@@ -36,10 +39,9 @@ class Area extends Base implements RendererInterface
             $series[] = $member;
         }
 
-        //create labels for xAxis based on the last seen series data
-        $xAxis = $chart->getOptionsType('xAxis', new Container('xAxis'));
-        $xAxis->setCategories(array_keys($seriesData));
-        $chart->addOptions($xAxis);
+        if ($formatOptions = $format->getFormatOptions($chart)) {
+            $chart->addOptions($formatOptions);
+        }
 
         //return the series data
         $options = $chart->getOptionsForOutput();
