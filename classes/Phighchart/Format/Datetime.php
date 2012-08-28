@@ -80,7 +80,7 @@ class Datetime implements FormatInterface
         //if custom date format has been defined by the user, use it to
         //translate date string into PHP DateTime object
         if (!is_null($this->_format)) {
-            if(!$date = \DateTime::createFromFormat($this->_format, $stringDate)) {
+            if (!$date = \DateTime::createFromFormat($this->_format, $stringDate)) {
                 throw new \Exception(
                     sprintf(
                         "Could not parse date '%s' using the given date format "

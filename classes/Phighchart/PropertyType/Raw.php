@@ -1,6 +1,6 @@
 <?php
 
-namespace PhighChart\PropertyType;
+namespace Phighchart\PropertyType;
 
 /**
  * Use the Type/Raw to mark the highchart properties that need to be rendered

@@ -37,7 +37,8 @@ class Linear implements FormatInterface
      * @param  Array $seriesData
      * @return Array
      */
-    public function getFormattedChartData(Array $seriesData) {
+    public function getFormattedChartData(Array $seriesData)
+    {
         return array_values($seriesData);
     }
 }
