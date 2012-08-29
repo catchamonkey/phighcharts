@@ -78,9 +78,8 @@ For example, you may want to always use green for apples when charting apples vs
     $lineChart->render();
 ?>
 ```
-
-for rendering the labels as datetime format, provide instance of the format
-class. Note: Phighchart library uses the Linear format by default
+for rendering the labels as datetime format, provide an instance of the format
+class. Note: PhighChart uses the Linear format by default
 
 ```php
 <?php

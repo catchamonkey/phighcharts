@@ -10,7 +10,6 @@ use Phighchart\Format\FormatInterface;
  * Standard linear chart plot format
  * @author  Shahrukh Omar <shahrukhomar@gmail.com>
  */
-
 class Linear implements FormatInterface
 {
     /**
