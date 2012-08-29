@@ -111,6 +111,7 @@ class DatetimeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Tests the invalid custom date pattern exception
+     * @expectedException InvalidArgumentException
      */
     public function testInvalidCustomFormat()
     {
@@ -122,12 +123,35 @@ class DatetimeTest extends \PHPUnit_Framework_TestCase
         $dateString      = '1st August, 2012 08:08:08';
 
         $dateTime->setDateTimeFormat($dateTimePattern);
-
-        $this->setExpectedException(
-            'InvalidArgumentException',
-            "Could not parse date '".$dateString."' using the given date format '".$dateTimePattern."'"
-        );
-
         $ref->invoke($dateTime, $dateString);
+    }
+
+    /**
+     * Tests the date time format string setter
+     */
+    public function testDateTimeFormatSetter()
+    {
+        $dateTime = new Datetime();
+        $ref      = new \ReflectionProperty($dateTime, '_format');
+        $ref->setAccessible(true);
+
+        $format = 'd M y H:i:s';
+        $dateTime->setDateTimeFormat($format);
+        $this->assertEquals($format, $ref->getValue($dateTime));
+
+        $format = 'jS F, Y';
+        $dateTime->setDateTimeFormat($format);
+        $this->assertEquals($format, $ref->getValue($dateTime));
+    }
+
+    /**
+     * Tests the invalid custom date format exception
+     * @expectedException InvalidArgumentException
+     */
+    public function testInvalidDateTimeFormatSetter()
+    {
+        $dateTime = new Datetime();
+        $format = 'd M y a';
+        $dateTime->setDateTimeFormat($format);
     }
 }
