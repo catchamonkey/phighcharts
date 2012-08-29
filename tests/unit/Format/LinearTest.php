@@ -7,9 +7,15 @@ use Phighchart\Chart;
 use Phighchart\Format\Linear;
 use Phighchart\Renderer\Area;
 
+/**
+ * Unit tests for the default Linear format type
+ * @author  Sharhukh Omar <shahrukhomar@gmail.com>
+ */
 class LinearTest extends \PHPUnit_Framework_TestCase
 {
-    //tests the formatted chart data for the linear format
+    /**
+     * tests the formatted chart data for the linear format
+     */
     public function testLinearChartData()
     {
         $seriesData = array(
@@ -26,6 +32,9 @@ class LinearTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expected, $formatted);
     }
 
+    /**
+     * Tests the xAxis format options for the linear type
+     */
     public function testFormatOptions()
     {
         $data = new Data();

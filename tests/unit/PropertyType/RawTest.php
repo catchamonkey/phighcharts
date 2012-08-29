@@ -8,9 +8,11 @@ use Phighchart\PropertyType\Raw;
  * Raw property type test
  * @author  Shahrukh Omar <sharhukhomar@gmail.com>
  */
-
 class RawTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * Tests Raw encode on string subject
+     */
     public function testRawEncode()
     {
         $testString = 'foo';
@@ -20,6 +22,9 @@ class RawTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, Raw::encode($testString));
     }
 
+    /**
+     * Tests Raw decode on string subject
+     */
     public function testRawDecode()
     {
         $testString = 'foo';
@@ -29,6 +34,9 @@ class RawTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($testString, Raw::decode($encoded));
     }
 
+    /**
+     * Raw encode/decode when the subject is json encoded for render
+     */
     public function testRawRender()
     {
         $testData = array('foo' => Raw::encode('bar'));
