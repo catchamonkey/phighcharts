@@ -27,11 +27,21 @@ class Datetime implements FormatInterface
     /**
      * Set the custom date format if the given dates are not in
      * localized or ISO8601 standard notation
+     * @throws  InvalidArgumentException If given date time string format is invalid
      * @param String $format date time format string
      */
     public function setDateTimeFormat($format)
     {
-        $this->_format = $format;
+        $date = new \DateTime();
+        $dateString = $date->format($format);
+
+        if (\DateTime::createFromFormat($format, $dateString)) {
+            $this->_format = $format;
+        } else {
+            throw new \InvalidArgumentException(
+                'The given date time string format is not valid'
+            );
+        }
     }
 
     /**
@@ -70,7 +80,7 @@ class Datetime implements FormatInterface
      * OR custom datetime string format when the formatting pattern is supplied
      * @link   http://no2.php.net/manual/en/datetime.formats.compound.php
      * @link   http://no2.php.net/manual/en/datetime.formats.date.php
-     * @throws Exception If string format cannot be parsed
+     * @throws InvalidArgumentException If string format cannot be parsed
      * @param  String $stringDate Datetime string to convert
      * @return String
      */
