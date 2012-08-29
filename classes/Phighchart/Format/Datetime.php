@@ -79,15 +79,16 @@ class Datetime implements FormatInterface
         $date = false;
         //if custom date format has been defined by the user, use it to
         //translate date string into PHP DateTime object
-        if (!is_null($this->_format)) {
-            if (!$date = \DateTime::createFromFormat($this->_format, $stringDate)) {
-                throw new \Exception(
-                    sprintf(
-                        "Could not parse date '%s' using the given date format "
-                        . "'%s'", $stringDate, $this->_format
-                    )
-                );
-            }
+        if (
+            !is_null($this->_format) &&
+            !$date = \DateTime::createFromFormat($this->_format, $stringDate)
+        ) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Could not parse date '%s' using the given date format "
+                    . "'%s'", $stringDate, $this->_format
+                )
+            );
         }
 
         //attempt to parse the string into PHP DateTime object if it hasn't
@@ -96,13 +97,13 @@ class Datetime implements FormatInterface
             $date = new \DateTime($stringDate);
         }
 
-        $exploded = explode('.',$date->format('Y.m.d.H.i.s'));
+        $exploded = explode('.', $date->format('Y.m.d.H.i.s'));
 
         //JS Date object month starts from 0
         if (isset($exploded[1]) && $exploded[1] > 0) {
             $exploded[1] -= 1;
         }
 
-        return 'Date.UTC('.implode(',',$exploded).')';
+        return 'Date.UTC('.implode(',', $exploded).')';
     }
 }
