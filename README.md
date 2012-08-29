@@ -123,4 +123,4 @@ to the Phighchart Datetime format class as follows:
 
 You can run the Unit Test suite with;
 
-    phpunit -c tests/ .
+    phpunit -c . tests/
