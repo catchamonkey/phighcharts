@@ -12,21 +12,23 @@ use Phighchart\PropertyType\Raw;
  */
 class DatetimeTest extends \PHPUnit_Framework_TestCase
 {
-    //tests the datetime format class when given date times are in standard
-    //Localized or ISO8601 Notations
+    /**
+     * tests the datetime format class when given date times are in standard
+     * Localized or ISO8601 Notations
+     */
     public function testStandardDatetimeChartData()
     {
         $seriesData = array(
-            '2012-08-01 08:00:00' => 12,
+            '2012-01-01 08:00:00' => 12,
             '02-08-2012'          => 3,
-            '2012:08:03 18:11:31' => 33
+            '2012:12:03 18:11:31' => 33
         );
 
         $d = Raw::TYPE_RAW_DELIMITER;
         $expected  = array(
-            $d.'[Date.UTC(2012,7,01,08,00,00),12]'.$d,
+            $d.'[Date.UTC(2012,0,01,08,00,00),12]'.$d,
             $d.'[Date.UTC(2012,7,02,00,00,00),3]'.$d,
-            $d.'[Date.UTC(2012,7,03,18,11,31),33]'.$d
+            $d.'[Date.UTC(2012,11,03,18,11,31),33]'.$d
         );
 
         $dateTime  = new Datetime();
@@ -35,20 +37,22 @@ class DatetimeTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expected, $formatted);
     }
 
-    //Tests the datetime format class with a non-standard custom date format
+    /**
+     * Tests the datetime format class with a non-standard custom date format
+     */
     public function testNonStandardDatetimeChartData()
     {
         $seriesData = array(
-            '1st August, 2012 08:00:31' => 12,
-            '2nd August, 2012 00:00:00' => 3,
-            '3rd August, 2012 00:01:00' => 33
+            '1st January, 2012 08:00:31' => 12,
+            '2nd August, 2012 00:00:00'  => 3,
+            '1st December, 2012 00:01:00'  => 33
         );
 
         $d = Raw::TYPE_RAW_DELIMITER;
-        $expected  = array(
-            $d.'[Date.UTC(2012,7,01,08,00,31),12]'.$d,
+        $expected = array(
+            $d.'[Date.UTC(2012,0,01,08,00,31),12]'.$d,
             $d.'[Date.UTC(2012,7,02,00,00,00),3]'.$d,
-            $d.'[Date.UTC(2012,7,03,00,01,00),33]'.$d
+            $d.'[Date.UTC(2012,11,01,00,01,00),33]'.$d
         );
 
         $dateTime  = new Datetime();
@@ -58,7 +62,9 @@ class DatetimeTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expected, $formatted);
     }
 
-    //Tests the string to js Date conversion function
+    /**
+     * Tests the string to js Date conversion function
+     */
     public function testStringToJsDateConversion()
     {
         $dateTime  = new Datetime();
@@ -85,7 +91,9 @@ class DatetimeTest extends \PHPUnit_Framework_TestCase
             $ref->invoke($dateTime, '01 Aug 12 00:00:00'));
     }
 
-    //tests the highchart xAxis format options
+    /**
+     * tests the highchart xAxis format options
+     */
     public function testFormatOptions()
     {
         $chart    = new Chart();
@@ -99,5 +107,27 @@ class DatetimeTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $formatOptions->getOptions());
         $this->assertSame('xAxis', $formatOptions->getOptionsType());
+    }
+
+    /**
+     * Tests the invalid custom date pattern exception
+     */
+    public function testInvalidCustomFormat()
+    {
+        $dateTime  = new Datetime();
+        $ref       = new \ReflectionMethod($dateTime, '_convertStringToJsDate');
+        $ref->setAccessible(true);
+
+        $dateTimePattern = 'd M y H:i:s';
+        $dateString      = '1st August, 2012 08:08:08';
+
+        $dateTime->setDateTimeFormat($dateTimePattern);
+
+        $this->setExpectedException(
+            'InvalidArgumentException',
+            "Could not parse date '".$dateString."' using the given date format '".$dateTimePattern."'"
+        );
+
+        $ref->invoke($dateTime, $dateString);
     }
 }
