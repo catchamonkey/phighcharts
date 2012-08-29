@@ -6,6 +6,9 @@ use Phighchart\Options\Container;
 use Phighchart\Options\ExtendedContainer;
 use Phighchart\Data;
 use Phighchart\Renderer\RendererInterface;
+use Phighchart\Format\FormatInterface;
+use Phighchart\Format\Linear;
+
 use Exception;
 
 /**
@@ -18,10 +21,12 @@ class Chart
     private $_extendedOptions;
     private $_renderer;
     private $_data;
+    private $_format;
 
     public function __construct()
     {
         $this->_options         = array();
+        $this->_format          = new Linear(); //default as linear format
         $this->_extendedOptions = FALSE;
         $this->_renderer        = FALSE;
         $this->_data            = FALSE;
@@ -160,5 +165,25 @@ class Chart
         }
 
         return $this->_renderer->render($this);
+    }
+
+    /**
+     * Sets the chart label format
+     * @param FormatInterface $format The format type
+     */
+    public function setFormat(FormatInterface $format)
+    {
+        $this->_format = $format;
+
+        return $this;
+    }
+
+    /**
+     * Returns the current format for this chart
+     * @return Phighchart\FormatInterface
+     */
+    public function getFormat()
+    {
+        return $this->_format;
     }
 }

@@ -59,7 +59,7 @@ For example, you may want to always use green for apples when charting apples vs
         ->setData($data)
         ->setRenderer(new Pie());
 
-    // a line chart is similiar, and our data container holds series data for this
+    // a line chart is similar, and our data container holds series data for this
     $lineChart = clone $chart;
     $options = new Container('chart');
     $options->setRenderTo('chart_example_60');
@@ -72,10 +72,49 @@ For example, you may want to always use green for apples when charting apples vs
     // or to change the element rendered
     // $chart->renderContainer('span');
     $chart->render();
-    
+
     // and for the line
     $lineChart->renderContainer();
     $lineChart->render();
+?>
+```
+for rendering the labels as datetime format, provide an instance of the format
+class. Note: Phighchart uses the Linear format by default
+
+```php
+<?php
+
+    use Phighchart\Format\Datetime;
+
+    //set up chart and chart data
+    $dateTimeFormat = new Datetime();
+    $chart->setFormat($dateTimeFormat);
+
+?>
+```
+
+The Datetime formatter will now attempt to parse the chart data keys as DateTime
+objects. The Datetime format class can parse the standard PHP date time string
+formats out-of-the-box.
+
+See
+ - http://no2.php.net/manual/en/datetime.formats.compound.php
+ - http://no2.php.net/manual/en/datetime.formats.date.php
+
+For parsing custom date time string formats, provide the datetime string pattern
+to the Phighchart Datetime format class as follows:
+
+```php
+<?php
+
+    use Phighchart\Format\Datetime;
+
+    //set up chart and chart data
+    $dateTimeFormat = new Datetime();
+    //for parsing date time string of pattern "1st August, 2012 12:09:32"
+    $dateTimeFormat->setDateTimeFormat('jS F, Y H:i:s');
+    $chart->setFormat($dateTimeFormat);
+
 ?>
 ```
 
@@ -83,4 +122,4 @@ For example, you may want to always use green for apples when charting apples vs
 
 You can run the Unit Test suite with;
 
-    phpunit -c tests/ .
+    phpunit -c . tests/
