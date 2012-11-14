@@ -27,8 +27,8 @@ class Datetime implements FormatInterface
     /**
      * Set the custom date format if the given dates are not in
      * localized or ISO8601 standard notation
-     * @throws  InvalidArgumentException If given date time string format is invalid
-     * @param String $format date time format string
+     * @throws InvalidArgumentException If given date time string format is invalid
+     * @param  String                   $format date time format string
      */
     public function setDateTimeFormat($format)
     {
@@ -46,7 +46,7 @@ class Datetime implements FormatInterface
 
     /**
      * Sets the xAxis type as datetime and returns it in a Phighchart\Container
-     * @param  Chart $chart chart instance
+     * @param  Chart                $chart chart instance
      * @return Phighchart\Container
      */
     public function getFormatOptions(Chart $chart)
@@ -81,7 +81,7 @@ class Datetime implements FormatInterface
      * @link   http://no2.php.net/manual/en/datetime.formats.compound.php
      * @link   http://no2.php.net/manual/en/datetime.formats.date.php
      * @throws InvalidArgumentException If string format cannot be parsed
-     * @param  String $stringDate Datetime string to convert
+     * @param  String                   $stringDate Datetime string to convert
      * @return String
      */
     private function _convertStringToJsDate($stringDate)
