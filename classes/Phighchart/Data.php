@@ -78,6 +78,7 @@ class Data
                 $ret += $count;
             }
         }
+
         return $ret;
     }
 
