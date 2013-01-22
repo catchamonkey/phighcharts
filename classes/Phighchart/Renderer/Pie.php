@@ -22,30 +22,33 @@ class Pie extends Base implements RendererInterface
      */
     public function render(Chart $chart)
     {
-        // prepare the data
-        $series = array();
-        foreach ($chart->getData()->getCounts() as $key => $count) {
-            // prepare the series item
-            $seriesItem = new \StdClass();
-            $seriesItem->name = $key;
-            $seriesItem->y    = $count;
-            // add the sticky colour if present
-            if ($colour = $this->_getStickyColour($chart, $key)) {
-                $seriesItem->color  = $colour;
+        if ($counts = $chart->getData()->getCounts()) {
+            // prepare the data
+            $series = array();
+            foreach ($chart->getData()->getCounts() as $key => $count) {
+                // prepare the series item
+                $seriesItem = new \StdClass();
+                $seriesItem->name = $key;
+                $seriesItem->y    = $count;
+                // add the sticky colour if present
+                if ($colour = $this->_getStickyColour($chart, $key)) {
+                    $seriesItem->color  = $colour;
+                }
+                // add to the series
+                $series[] = $seriesItem;
             }
-            // add to the series
-            $series[] = $seriesItem;
-        }
-        // make it a pie chart and pass back in the prepared data
-        $chartSeriesOptions = $chart->getOptionsType('series', new Container('series'));
-        $chartSeriesOptions->setType('pie');
-        $chartSeriesOptions->setData($series);
-        // get all the existing options
-        $options            = $chart->getOptionsForOutput();
-        // add the series as a nested array
-        $options['series']  = array($chartSeriesOptions->getOptions());
+            // make it a pie chart and pass back in the prepared data
+            $chartSeriesOptions = $chart->getOptionsType('series', new Container('series'));
+            $chartSeriesOptions->setType('pie');
+            $chartSeriesOptions->setData($series);
+            // get all the existing options
+            $options            = $chart->getOptionsForOutput();
+            // add the series as a nested array
+            $options['series']  = array($chartSeriesOptions->getOptions());
 
-        // send back the prepared chart JS
-        return $this->outputJavaScript($chart, $options);
+            // send back the prepared chart JS
+            return $this->outputJavaScript($chart, $options);
+        }
+        return '';
     }
 }

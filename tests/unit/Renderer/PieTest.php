@@ -83,4 +83,27 @@ class PieTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertSame('<div id="chart_example_59"></div>', $chart->renderContainer());
     }
+
+    public function testRenderWithNoData()
+    {
+        $options = new OptionsContainer('chart');
+        $options->setRenderTo('chart_example_59');
+        $options->setMarginRight(130);
+        $options->setMarginBottom(25);
+
+        $data = new Data();
+
+        // put it all together
+        $chart  = new Chart();
+        $chart->addOptions($options);
+        $chart->setData($data);
+        $chart->setRenderer(new Pie());
+
+        // test the full expected output
+        $this->assertSame(
+            '',
+            $chart->render()
+        );
+        $this->assertSame('<div id="chart_example_59"></div>', $chart->renderContainer());
+    }
 }
