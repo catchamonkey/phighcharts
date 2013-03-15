@@ -1,4 +1,4 @@
-#Phighcharts ![Project Build Status](https://secure.travis-ci.org/catchamonkey/phighcharts.png)
+#Phighcharts [![Project Build Status](https://secure.travis-ci.org/catchamonkey/phighcharts.png?branch=master)](https://travis-ci.org/catchamonkey/phighcharts)
 A PHP (Requires PHP 5.3) library for the Highcharts JavaScript charting library
 
 ##What does it do?
