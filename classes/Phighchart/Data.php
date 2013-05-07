@@ -23,8 +23,8 @@ class Data
      **/
     public function addCount($key, $count)
     {
-        // count must be integer of float
-        if (!is_integer($count) || is_float($count)) {
+        // count must be integer or float
+        if (!is_integer($count) && !is_float($count)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Count value must be integer or float, "
