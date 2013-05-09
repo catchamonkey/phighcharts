@@ -49,6 +49,7 @@ class Pie extends Base implements RendererInterface
             // send back the prepared chart JS
             return $this->outputJavaScript($chart, $options);
         }
+
         return '';
     }
 }
