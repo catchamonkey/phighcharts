@@ -1,4 +1,4 @@
-#Phighcharts [![Project Build Status](https://secure.travis-ci.org/catchamonkey/phighcharts.png?branch=master)](https://travis-ci.org/catchamonkey/phighcharts)
+#Phighcharts [![Project Build Status](https://secure.travis-ci.org/catchamonkey/phighcharts.png?branch=master)](https://travis-ci.org/catchamonkey/phighcharts) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/59d71ee8-7c9c-411d-ac97-94acf3381dd7/small.png)](https://insight.sensiolabs.com/projects/59d71ee8-7c9c-411d-ac97-94acf3381dd7)
 A PHP (Requires PHP 5.3) library for the Highcharts JavaScript charting library
 
 ##What does it do?
