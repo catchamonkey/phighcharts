@@ -22,7 +22,7 @@ class Pie extends Base implements RendererInterface
      */
     public function render(Chart $chart)
     {
-        if ($counts = $chart->getData()->getCounts()) {
+        if ($chart->getData()->getCounts()) {
             // prepare the data
             $series = array();
             foreach ($chart->getData()->getCounts() as $key => $count) {
