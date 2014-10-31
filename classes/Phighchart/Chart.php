@@ -59,8 +59,7 @@ class Chart
 
     /**
      * Returns the current options array
-     * @return Mixed, Array of options (Container|ExtendedContainer) if any
-     * present, or FALSE
+     * @return Mixed Array of options (Container|ExtendedContainer) if present, or FALSE
      */
     public function getOptions()
     {
@@ -69,7 +68,7 @@ class Chart
 
     /**
      * Returns the current options as an array of StdClass's
-     * @return Mixed, Array of options StdClass if any present, or FALSE
+     * @return Mixed Array of options StdClass if any present, or FALSE
      */
     public function getOptionsForOutput()
     {
@@ -87,7 +86,7 @@ class Chart
     /**
      * Returns a single set of options by type
      * @param  String $type The type of options you want to retrieve
-     * @return Mixed, Container|ExtendedContainer if present, or $default if not (Default:FALSE)
+     * @return Mixed Container|ExtendedContainer if present, or $default if not (Default:FALSE)
      */
     public function getOptionsType($type, $default = FALSE)
     {
@@ -101,7 +100,7 @@ class Chart
 
     /**
      * Returns the current extended options instance
-     * @return Mixed, Phighchart\Options\ExtendedContainer $_extendedOptions if set, FALSE otherwise
+     * @return Mixed Phighchart\Options\ExtendedContainer $_extendedOptions if set, FALSE otherwise
      */
     public function getExtendedOptions()
     {
@@ -122,7 +121,7 @@ class Chart
 
     /**
      * Returns the current data instance
-     * @return Mixed, Phighchart\Data $_data if set, FALSE otherwise
+     * @return Mixed Phighchart\Data $_data if set, FALSE otherwise
      */
     public function getData()
     {
