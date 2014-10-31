@@ -15,7 +15,7 @@ class Linear implements FormatInterface
     /**
      * Sets the xAxis category labels for the linear chart plots
      * @param  Chart  $chart instance of the current Chart object
-     * @return Mixed, Phighchart\Container if the series data is set, boolean false otherwise
+     * @return Mixed Phighchart\Container if the series data is set, boolean false otherwise
      */
     public function getFormatOptions(Chart $chart)
     {
