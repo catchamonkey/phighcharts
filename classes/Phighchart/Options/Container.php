@@ -76,7 +76,7 @@ class Container
     /**
      * Returns a single option by key
      * @param  String $key The key of the option you want to retrieve
-     * @return Mixed, $ret option value if present, or $default if not (Default:FALSE)
+     * @return Mixed  $ret option value if present, or $default if not (Default:FALSE)
      */
     public function getOption($key, $default = FALSE)
     {
