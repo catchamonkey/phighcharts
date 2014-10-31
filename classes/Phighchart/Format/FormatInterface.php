@@ -13,7 +13,7 @@ interface FormatInterface
     /**
      * Returns any chart options specific to this specific formatter
      * @param  Chart  $chart instance of current Chart object
-     * @return Mixed, PhighChart/Option if this format has specific chart options
+     * @return Mixed PhighChart/Option if this format has specific chart options
      * , boolean false otherwise
      */
     public function getFormatOptions(Chart $chart);
