@@ -39,7 +39,7 @@ class Data
 
     /**
      * Returns any defined data in the 'count' key
-     * @return Mixed, Array of count data if set, FALSE otherwise
+     * @return Mixed Array of count data if set, FALSE otherwise
      */
     public function getCounts()
     {
@@ -54,7 +54,7 @@ class Data
     /**
      * Returns a single count value by key if defined
      * @param  string $key The count key you want to retrieve
-     * @return Mixed, Integer count if set, FALSE otherwise
+     * @return Mixed Integer count if set, FALSE otherwise
      */
     public function getCount($key)
     {
